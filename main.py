@@ -8,9 +8,12 @@ MAKEFUN_OUTPUT_DIR environment variable, defaulting to /output. The output
 file is created with world-readable permissions (0644).
 """
 import os
+from pathlib import Path
 
 # Read line.txt as binary to preserve exact bytes
-with open("line.txt", "rb") as f:
+# Use __file__ to locate line.txt relative to this script's location
+line_txt_path = Path(__file__).resolve().parent / "line.txt"
+with open(line_txt_path, "rb") as f:
     content = f.read()
 
 # Determine output directory
